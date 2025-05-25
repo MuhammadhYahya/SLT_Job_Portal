@@ -1,3 +1,4 @@
+import Footer from "./Footer";
 import JobCard from "./JobCard";
 const JobListings = () => {
   const jobs = [
@@ -44,8 +45,9 @@ const JobListings = () => {
   ];
 
   return (
+    <>
     <section className="absolute top-130 left-0 w-full bg-white py-12 px-4 md:px-8 shadow-lg rounded-t-[60px]">
-      <div className="container mx-auto">
+      <div className="container max-w-[1800px] mx-auto">
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8 justify-center">
           {jobs.map((job, index) => (
             <JobCard
@@ -57,7 +59,9 @@ const JobListings = () => {
           ))}
         </div>
       </div>
+      <Footer />
     </section>
+     </>
   );
 };
 
