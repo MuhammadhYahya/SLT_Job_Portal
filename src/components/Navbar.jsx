@@ -1,6 +1,7 @@
 import { useState } from "react";
-import logo from "../../assets/logo.png";
+import logo from "../assets/logo.png";
 import { Menu, X } from "lucide-react";
+import { Link } from "react-router-dom";
 
 const Navbar = () => {
   const [isOpen, setIsOpen] = useState(false);
@@ -8,92 +9,107 @@ const Navbar = () => {
   return (
     <nav className="fixed top-5 left-1/2 transform -translate-x-1/2 z-10 w-[calc(100%-40px)] max-w-[1800px] bg-white rounded-[90px] px-6 py-4 shadow-md">
       <div className="flex justify-between items-center max-h-[80px]">
+        {/* Logo and Title */}
         <div className="flex items-center gap-3">
-          <img
-            src={logo}
-            alt=""
-            className="w-[150px] h-[80px] object-contain rounded-3xl"
-          />
+          <Link to="/">
+            {" "}
+            <img
+              src={logo}
+              alt="Logo"
+              className="w-[150px] h-[80px] object-contain rounded-3xl"
+            />
+          </Link>
+
           <span className="font-['Montserrat'] font-semibold text-xl md:text-3xl text-blue-700">
             Training Program
           </span>
         </div>
+
+        {/* Hamburger Menu for Mobile */}
         <div className="md:hidden">
           <button onClick={() => setIsOpen(!isOpen)}>
             {isOpen ? <X size={30} /> : <Menu size={30} />}
           </button>
         </div>
+
+        {/* Desktop Navigation */}
         <ul className="hidden md:flex gap-5 font-[inter] text-xl md:text-2xl">
           <li>
-            <a
-              href="#"
+            <Link
+              to="/"
               className="text-gray-800 font-medium hover:text-blue-500"
             >
               Home
-            </a>
+            </Link>
           </li>
           <span>|</span>
           <li>
-            <a
-              href="#"
+            <Link
+              to="/about"
               className="text-gray-800 font-medium hover:text-blue-500"
             >
               About
-            </a>
+            </Link>
           </li>
           <span>|</span>
           <li>
-            <a
-              href="#"
+            <Link
+              to="/services"
               className="text-gray-800 font-medium hover:text-blue-500"
             >
               Services
-            </a>
+            </Link>
           </li>
           <span>|</span>
           <li>
-            <a
-              href="#"
+            <Link
+              to="/contact"
               className="text-gray-800 font-medium hover:text-blue-500"
             >
               Contact
-            </a>
+            </Link>
           </li>
         </ul>
       </div>
+
+      {/* Mobile Navigation */}
       {isOpen && (
         <ul className="md:hidden mt-4 flex flex-col gap-3 text-center text-lg">
           <li>
-            <a
-              href="#"
+            <Link
+              to="/"
               className="text-gray-800 font-medium hover:text-blue-500"
+              onClick={() => setIsOpen(false)}
             >
               Home
-            </a>
+            </Link>
           </li>
           <li>
-            <a
-              href="#"
+            <Link
+              to="/about"
               className="text-gray-800 font-medium hover:text-blue-500"
+              onClick={() => setIsOpen(false)}
             >
               About
-            </a>
+            </Link>
           </li>
           <li>
-            <a
-              href="#"
+            <Link
+              to="/services"
               className="text-gray-800 font-medium hover:text-blue-500"
+              onClick={() => setIsOpen(false)}
             >
               Services
-            </a>
+            </Link>
           </li>
           <li>
-            <a
-              href="#"
+            <Link
+              to="/contact"
               className="text-gray-800 font-medium hover:text-blue-500"
+              onClick={() => setIsOpen(false)}
             >
               Contact
-            </a>
+            </Link>
           </li>
         </ul>
       )}

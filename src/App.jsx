@@ -1,11 +1,21 @@
-import Home from "./components/Home";
+import { BrowserRouter, Routes, Route } from "react-router-dom";
+import Home from "./pages/Home";
+import About from "./pages/About";
+import Navbar from "./components/Navbar";
 
-function App() {
+const App = () => {
   return (
-    <>
-    <Home />
-    </>
+    <BrowserRouter>
+      {/* Common Navbar visible on every page */}
+      <Navbar />
+
+      {/* Route definitions */}
+      <Routes>
+        <Route path="/" element={<Home />} />
+        <Route path="/about" element={<About />} />
+      </Routes>
+    </BrowserRouter>
   );
-}
+};
 
 export default App;
