@@ -1,10 +1,14 @@
 import { useState } from "react";
 import logo from "../assets/logo.png";
 import { Menu, X } from "lucide-react";
-import { Link } from "react-router-dom";
+import { useLocation, Link } from "react-router-dom";
 
 const Navbar = () => {
   const [isOpen, setIsOpen] = useState(false);
+
+  const location = useLocation();
+
+  const isVacanciesPage = location.pathname === "/vacancies";
 
   return (
     <nav className="fixed top-5 left-1/2 transform -translate-x-1/2 z-10 w-[calc(100%-40px)] max-w-[1800px] bg-white rounded-[90px] px-6 py-4 shadow-md">
@@ -33,84 +37,124 @@ const Navbar = () => {
         </div>
 
         {/* Desktop Navigation */}
-        <ul className="hidden md:flex gap-5 font-[inter] text-xl md:text-2xl">
-          <li>
-            <Link
-              to="/"
-              className="text-gray-800 font-medium hover:text-blue-500"
-            >
-              Home
-            </Link>
-          </li>
-          <span>|</span>
-          <li>
-            <Link
-              to="/about"
-              className="text-gray-800 font-medium hover:text-blue-500"
-            >
-              About
-            </Link>
-          </li>
-          <span>|</span>
-          <li>
-            <Link
-              to="/services"
-              className="text-gray-800 font-medium hover:text-blue-500"
-            >
-              Services
-            </Link>
-          </li>
-          <span>|</span>
-          <li>
-            <Link
-              to="/contact"
-              className="text-gray-800 font-medium hover:text-blue-500"
-            >
-              Contact
-            </Link>
-          </li>
-        </ul>
+        {isVacanciesPage ? (
+          <ul className="hidden md:flex gap-5 font-[inter] text-xl md:text-2xl">
+            <li>
+              <Link to="/vacancies">Job status</Link>
+            </li>
+             <span>|</span>
+            <li>
+              <Link to="/vacancies#apply">Apply for job</Link>
+            </li>
+            <span>|</span>
+            <li>
+              <Link to="/vacancies#contact">jobs for you</Link>
+            </li>
+             <span>|</span>
+            <li>
+              <Link to="/">Home</Link>
+            </li>
+            <span>|</span>
+            <li>
+              <Link to="/login">Login</Link>
+            </li>
+          </ul>
+        ) : (
+          <ul className="hidden md:flex gap-5 font-[inter] text-xl md:text-2xl">
+            <li>
+              <Link
+                to="/"
+                className="text-gray-800 font-medium hover:text-blue-500"
+              >
+                Home
+              </Link>
+            </li>
+            <span>|</span>
+            <li>
+              <Link
+                to="/about"
+                className="text-gray-800 font-medium hover:text-blue-500"
+              >
+                About
+              </Link>
+            </li>
+            <span>|</span>
+            <li>
+              <Link
+                to="/vacancies"
+                className="text-gray-800 font-medium hover:text-blue-500"
+              >
+                Vacancies
+              </Link>
+            </li>
+            <span>|</span>
+            <li>
+              <Link
+                to="/login"
+                className="text-gray-800 font-medium hover:text-blue-500"
+              >
+                Login
+              </Link>
+            </li>
+          </ul>
+        )}
       </div>
 
       {/* Mobile Navigation */}
       {isOpen && (
         <ul className="md:hidden mt-4 flex flex-col gap-3 text-center text-lg">
-          <li>
-            <Link
-              to="/"
-              className="text-gray-800 font-medium hover:text-blue-500"
-              onClick={() => setIsOpen(false)}
-            >
-              Home
-            </Link>
-          </li>
-          <li>
-            <Link
-              to="/about"
-              className="text-gray-800 font-medium hover:text-blue-500"
-              onClick={() => setIsOpen(false)}
-            >
-              About
-            </Link>
-          </li>
-          <li>
-            <Link
-              to="/services"
-              className="text-gray-800 font-medium hover:text-blue-500"
-              onClick={() => setIsOpen(false)}
-            >
-              Services
-            </Link>
-          </li>
-          <li>
-            <Link
-              to="/contact"
-              className="text-gray-800 font-medium hover:text-blue-500"
-              onClick={() => setIsOpen(false)}
-            >
-              Contact
-            </Link>
-          </li>
+          {isVacanciesPage ? (
+            <>
+              <li>
+                <Link to="/vacancies" onClick={() => setIsOpen(false)}>
+                  Job status
+                </Link>
+              </li>
+              <li>
+                <Link to="/vacancies#apply" onClick={() => setIsOpen(false)}>
+                 Apply for job
+                </Link>
+              </li>
+              <li>
+                <Link to="/vacancies#contact" onClick={() => setIsOpen(false)}>
+                  Jobs for you
+                </Link>
+              </li>
+              <li>
+                <Link to="/" onClick={() => setIsOpen(false)}>
+                  Home
+                </Link>
+              </li>
+              <li>
+                <Link to="/login" onClick={() => setIsOpen(false)}>
+                  Login
+                </Link>
+              </li>
+            </>
+          ) : (
+            <>
+              <li>
+                <Link to="/" onClick={() => setIsOpen(false)}>
+                  Home
+                </Link>
+              </li>
+              <li>
+                <Link to="/about" onClick={() => setIsOpen(false)}>
+                  About
+                </Link>
+              </li>
+              <li>
+                <Link to="/vacancies" onClick={() => setIsOpen(false)}>
+                  Vacancies
+                </Link>
+              </li>
+              <li>
+                <Link to="/contact" onClick={() => setIsOpen(false)}>
+                  Contact
+                </Link>
+              </li>
+            </>
+          )}
         </ul>
       )}
     </nav>
