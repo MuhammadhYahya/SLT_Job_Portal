@@ -3,6 +3,7 @@ import Home from "./pages/Home";
 import About from "./pages/About";
 import Navbar from "./components/Navbar";
 import Vacancies from "./pages/Vacancies";
+import ApplyForm from "./pages/ApplyForm";
 
 const App = () => {
   return (
@@ -16,6 +17,7 @@ const App = () => {
         <Route path="/" element={<Home />} />
         <Route path="/about" element={<About />} />
         <Route path="/vacancies" element={<Vacancies />} />
+        <Route path="/apply" element={<ApplyForm />} />
       </Routes>
     </BrowserRouter>
   );
