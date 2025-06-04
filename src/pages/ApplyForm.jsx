@@ -126,14 +126,14 @@ const ApplyForm = () => {
           </div>
         </div>
 
-<div className="w-full flex justify-center">
-  <button
-    type="submit"
-    className="w-full max-w-[400px] bg-blue-900 text-white py-2 rounded-4xl hover:bg-blue-800 transition"
-  >
-    Submit
-  </button>
-</div>
+        <div className="w-full flex justify-center">
+          <button
+            type="submit"
+            className="w-full max-w-[400px] bg-blue-900 text-white py-2 rounded-4xl hover:bg-blue-800 transition"
+          >
+            Submit
+          </button>
+        </div>
       </form>
     </div>
   );

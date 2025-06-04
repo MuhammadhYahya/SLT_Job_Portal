@@ -10,14 +10,15 @@ const Navbar = () => {
   // Condition for pages like /vacancies, /apply,...
   const isJobPages =
     location.pathname.startsWith("/vacancies") ||
-    location.pathname.startsWith("/apply");
+    location.pathname.startsWith("/apply") ||
+    location.pathname.startsWith("/job-status");
 
   const renderNavLinks = () => {
     if (isJobPages) {
       return (
         <>
           <li>
-            <Link to="/vacancies">Job Status</Link>
+            <Link to="/job-status">Job Status</Link>
           </li>
           <li>
             <Link to="/vacancies#apply">Apply for Job</Link>
