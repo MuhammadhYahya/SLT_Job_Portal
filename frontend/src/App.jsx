@@ -1,28 +1,47 @@
-import { BrowserRouter, Routes, Route } from "react-router-dom";
+import { BrowserRouter, Routes, Route, Outlet } from "react-router-dom";
 import Home from "./pages/Home";
 import About from "./pages/About";
-import Navbar from "./components/Navbar";
 import Vacancies from "./pages/Vacancies";
 import ApplyForm from "./pages/ApplyForm";
 import JobStatus from "./pages/JobStatus";
+import Login from "./pages/login";
+import RegisterForm from "./pages/RegisterForm";
+import Navbar from "./components/Navbar";
 
 const App = () => {
   return (
     <BrowserRouter>
-      {/* Common Navbar visible on every page */}
-      <Navbar />
-
-      {/* Route definitions */}
-      
       <Routes>
-        <Route path="/" element={<Home />} />
-        <Route path="/about" element={<About />} />
-        <Route path="/vacancies" element={<Vacancies />} />
-        <Route path="/apply" element={<ApplyForm />} />
-        <Route path="/job-status" element={<JobStatus/>} />
+        {/* Routes with Navbar */}
+        <Route element={<LayoutWithNavbar />}>
+          <Route path="/" element={<Home />} />
+          <Route path="/about" element={<About />} />
+          <Route path="/vacancies" element={<Vacancies />} />
+          <Route path="/apply" element={<ApplyForm />} />
+          <Route path="/job-status" element={<JobStatus />} />
+        </Route>
+
+        {/* Routes without Navbar */}
+        <Route element={<LayoutWithoutNavbar />}>
+          <Route path="/login" element={<Login />} />
+          <Route path="/signup" element={<RegisterForm />} />
+        </Route>
       </Routes>
     </BrowserRouter>
   );
 };
+
+function LayoutWithNavbar() {
+  return (
+    <>
+      <Navbar />
+      <Outlet />
+    </>
+  );
+}
+
+function LayoutWithoutNavbar() {
+  return <Outlet />;
+}
 
 export default App;
