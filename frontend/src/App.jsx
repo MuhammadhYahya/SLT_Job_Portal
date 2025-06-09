@@ -7,6 +7,10 @@ import JobStatus from "./pages/JobStatus";
 import Login from "./pages/login";
 import RegisterForm from "./pages/RegisterForm";
 import Navbar from "./components/Navbar";
+import CreateJob from "./pages/admin/CreateJob";
+import UpdateJobs from "./pages/admin/UpdateJobs";
+import ReceivedCVs from "./pages/admin/ReceivedCVs";
+import AcceptedCVs from "./pages/admin/AcceptedCVs";
 
 const App = () => {
   return (
@@ -19,6 +23,10 @@ const App = () => {
           <Route path="/vacancies" element={<Vacancies />} />
           <Route path="/apply" element={<ApplyForm />} />
           <Route path="/job-status" element={<JobStatus />} />
+          <Route path="/admin/create-job" element={<CreateJob />} />
+          <Route path="/admin/update-jobs" element={<UpdateJobs />} />
+          <Route path="/admin/received-cvs" element={<ReceivedCVs />} />
+          <Route path="/admin/accepted-cvs" element={<AcceptedCVs />} />
         </Route>
 
         {/* Routes without Navbar */}

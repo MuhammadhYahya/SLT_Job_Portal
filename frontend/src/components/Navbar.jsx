@@ -7,13 +7,28 @@ const Navbar = () => {
   const [isOpen, setIsOpen] = useState(false);
   const location = useLocation();
 
-  // Condition for pages like /vacancies, /apply,...
   const isJobPages =
     location.pathname.startsWith("/vacancies") ||
     location.pathname.startsWith("/apply") ||
     location.pathname.startsWith("/job-status");
 
+
+  const isAdminPages = location.pathname.startsWith("/admin");
+
   const renderNavLinks = () => {
+    if (isAdminPages) {
+      return (
+        <>
+          <li>
+            <Link to="/">Home</Link>
+          </li>
+          <li>
+           <Link to="/login">Logout</Link>
+          </li>
+        </>
+      );
+    }
+
     if (isJobPages) {
       return (
         <>
@@ -34,24 +49,24 @@ const Navbar = () => {
           </li>
         </>
       );
-    } else {
-      return (
-        <>
-          <li>
-            <Link to="/">Home</Link>
-          </li>
-          <li>
-            <Link to="/about">About</Link>
-          </li>
-          <li>
-            <Link to="/vacancies">Vacancies</Link>
-          </li>
-          <li>
-            <Link to="/login">Login</Link>
-          </li>
-        </>
-      );
     }
+
+    return (
+      <>
+        <li>
+          <Link to="/">Home</Link>
+        </li>
+        <li>
+          <Link to="/about">About</Link>
+        </li>
+        <li>
+          <Link to="/vacancies">Vacancies</Link>
+        </li>
+        <li>
+          <Link to="/login">Login</Link>
+        </li>
+      </>
+    );
   };
 
   return (
