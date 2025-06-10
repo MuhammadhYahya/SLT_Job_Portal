@@ -25,8 +25,8 @@ const AdminSidebar = () => {
       {/* Sidebar (full height) */}
       <aside
         className={`
-          fixed md:static pt-40 top-0 left-0 
-          h-screen md:h-screen w-[250px] 
+          fixed h-screen pt-40 top-0 left-0 
+           w-[250px] flex  justify-center 
           bg-[#003366] text-white p-6
           transform md:translate-x-0 transition-transform duration-300 ease-in-out
           z-40 md:z-0

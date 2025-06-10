@@ -35,3 +35,18 @@ export const FormSelect = ({ label, name, options = [], onChange }) => (
     </select>
   </div>
 );
+
+export const FormInput = ({ id, label, type = "text", placeholder = "" }) => (
+  <div>
+    <label htmlFor={id} className="block md:text-3xl text-2xl font-medium mb-2">
+      {label}
+    </label>
+    <input
+      type={type}
+      id={id}
+      name={id}
+      className="w-full md:h-[70px] h-[50px] px-4 py-2 bg-white border border-gray-300 rounded-3xl shadow-sm focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent"
+      placeholder={placeholder}
+    />
+  </div>
+);
