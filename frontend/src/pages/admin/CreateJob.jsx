@@ -15,7 +15,7 @@ const CreateJob = () => {
 
   return (
     <AdminLayout>
-      <div className="bg-white p-8 rounded-2xl shadow-sm w-full font-[inter]">
+      <div className="relative z-10 bg-white p-8 rounded-2xl shadow-sm w-full font-[inter]">
         {/* Form Title */}
         <h1 className="md:text-4xl text-3xl font-bold mb-8 ">
           Company Job Vacancy :{" "}
