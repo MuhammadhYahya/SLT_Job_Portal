@@ -16,6 +16,7 @@ const Navbar = () => {
   const isAdminPages = location.pathname.startsWith("/admin");
 
   const renderNavLinks = () => {
+    
     if (isAdminPages) {
       return (
         <>
@@ -36,10 +37,10 @@ const Navbar = () => {
             <Link to="/job-status">Job Status</Link>
           </li>
           <li>
-            <Link to="/vacancies#apply">Apply for Job</Link>
+            <Link to="/vacancies">Apply for Job</Link>
           </li>
           <li>
-            <Link to="/vacancies#contact">Jobs for You</Link>
+            <Link to="/vacancies">Jobs for You</Link>
           </li>
           <li>
             <Link to="/">Home</Link>
@@ -70,7 +71,8 @@ const Navbar = () => {
   };
 
   return (
-    <nav className="fixed top-5 left-1/2 transform -translate-x-1/2 z-50 w-[calc(100%-40px)] max-w-[1800px] bg-white rounded-[90px] px-6 py-4 shadow-md">
+    <>
+    <nav className="fixed top-5 left-1/2 transform -translate-x-1/2 z-50 w-[calc(100%-40px)] max-w-[1800px]  px-6 py-4 shadow-md rounded-[90px] bg-white">
       <div className="flex justify-between items-center max-h-[80px]">
         {/* Logo + Title */}
         <div className="flex items-center gap-3">
@@ -87,7 +89,7 @@ const Navbar = () => {
         </div>
 
         {/* Mobile Toggle Button */}
-        <div className="md:hidden">
+        <div className="md:hidden                                                ">
           <button onClick={() => setIsOpen(!isOpen)}>
             {isOpen ? <X size={30} /> : <Menu size={30} />}
           </button>
@@ -98,15 +100,19 @@ const Navbar = () => {
           {renderNavLinks()}
         </ul>
       </div>
-
-      {/* Mobile Menu */}
+    </nav>
+    <nav>
+      
+         {/* Mobile Menu */}
       {isOpen && (
-        <ul className="md:hidden mt-4 flex flex-col gap-3 text-center text-lg">
+        <ul className="md:hidden mt-32 top-10 flex flex-col gap-3 text-center text-lg backdrop-blur-md  rounded-2xl p-4 shadow-lg z-40 relative bg-white">
           {renderNavLinks()}
         </ul>
       )}
     </nav>
+    </>
   );
 };
 
 export default Navbar;
+

@@ -1,7 +1,13 @@
+import { useNavigate } from "react-router-dom";
 import userJOBbg from "../assets/userJobBg.png";
 import JobCard from "../components/JobCard";
 import jobs from "../data/jobs";
 const Vacancies = () => {
+    const navigate = useNavigate(); 
+
+  const handleCheckStatus = () => {
+    navigate("/job-status"); 
+  };
   return (
     <>
       <div
@@ -30,7 +36,7 @@ const Vacancies = () => {
               </div>
             </div>
             <div className="flex justify-center mt-12">
-              <button className="bg-blue-800 hover:bg-blue-900 text-white text-2xl md:text-3xl cursor-pointer md:px-8 md:py-4 px-6 py-3 rounded-full shadow-md transition duration-300">
+              <button onClick={handleCheckStatus} className="bg-blue-800 hover:bg-blue-900 text-white text-2xl md:text-3xl cursor-pointer md:px-8 md:py-4 px-6 py-3 rounded-full shadow-md transition duration-300">
                 Check the Applied Job Status
               </button>
             </div>

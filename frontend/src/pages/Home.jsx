@@ -9,7 +9,8 @@ const Home = () => {
     <>
       <Navbar />
       <div
-        className="bg-cover bg-center text-white relative"
+        className="bg-cover bg-center text-white relative
+        "
         style={{
           backgroundImage: `url(${heroBg})`,
           minHeight: "600px",
