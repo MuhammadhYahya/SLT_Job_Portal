@@ -11,6 +11,7 @@ import CreateJob from "./pages/admin/CreateJob";
 import UpdateJobs from "./pages/admin/UpdateJobs";
 import ReceivedCVs from "./pages/admin/ReceivedCVs";
 import AcceptedCVs from "./pages/admin/AcceptedCVs";
+import Profile from "./pages/Profile";
 
 const App = () => {
   return (
@@ -27,12 +28,14 @@ const App = () => {
           <Route path="/admin/update-jobs" element={<UpdateJobs />} />
           <Route path="/admin/received-cvs" element={<ReceivedCVs />} />
           <Route path="/admin/accepted-cvs" element={<AcceptedCVs />} />
+          <Route path="/profile" element={<Profile />} />
         </Route>
 
         {/* Routes without Navbar */}
         <Route element={<LayoutWithoutNavbar />}>
           <Route path="/login" element={<Login />} />
           <Route path="/signup" element={<RegisterForm />} />
+
         </Route>
       </Routes>
     </BrowserRouter>

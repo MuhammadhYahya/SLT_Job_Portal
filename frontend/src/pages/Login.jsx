@@ -1,6 +1,9 @@
 import loginImg from "../assets/login.png";
-import { Link } from "react-router-dom";
-// SVG for the Google icon
+import { Link, useNavigate } from "react-router-dom";
+import { useState } from "react";
+import axios from "axios";
+
+
 const GoogleIcon = () => (
   <svg className="w-6 h-6" viewBox="0 0 48 48">
     <path
@@ -22,7 +25,35 @@ const GoogleIcon = () => (
   </svg>
 );
 
-export default function App() {
+export default function Login() {
+  const navigate = useNavigate();
+
+  const [formData, setFormData] = useState({
+    email: "",
+    password: "",
+  });
+
+  const handleSubmit = async (e) => {
+    e.preventDefault();
+
+    try {
+      // 🔹 Send login request to backend
+      const res = await axios.post("http://localhost:5000/api/users/login", {
+        email: formData.email,
+        password: formData.password,
+      });
+
+      // 🔹 Save token (optional: for future API calls)
+      localStorage.setItem("token", res.data.token);
+
+      alert("Login successful!");
+      navigate("/"); // ✅ Redirect to Home page
+    } catch (err) {
+      console.error("Login error:", err.response || err);
+      alert(err.response?.data?.message || "Login failed");
+    }
+  };
+
   return (
     // Main container
     <div className="bg-gray-100 min-h-screen flex items-center justify-center font-[Lato] p-4">
@@ -31,13 +62,19 @@ export default function App() {
         <div className="w-full md:w-1/2 bg-blue-800 text-white p-8 sm:p-12 flex flex-col justify-center">
           <h1 className="text-4xl md:text-5xl font-bold mb-8">Login</h1>
 
-          <form className="flex flex-col gap-6">
+          <form onSubmit={handleSubmit} className="flex flex-col gap-6">
             <div>
               <label className="text-xl">Email address :</label>
               <input
                 type="email"
-                placeholder=""
+                name="email"
+                value={formData.email}
+                onChange={(e) =>
+                  setFormData({ ...formData, email: e.target.value })
+                }
+                placeholder="Enter your email"
                 className="w-full mt-2 p-3 rounded-full bg-white text-gray-800 focus:outline-none focus:ring-2 focus:ring-blue-400"
+                required
               />
             </div>
 
@@ -45,8 +82,14 @@ export default function App() {
               <label className="text-xl">Password :</label>
               <input
                 type="password"
-                placeholder=""
+                name="password"
+                value={formData.password}
+                onChange={(e)=>
+                  setFormData({...formData,password: e.target.value})
+                }
+                placeholder="password"
                 className="w-full mt-2 p-3 rounded-full bg-white text-gray-800 focus:outline-none focus:ring-2 focus:ring-blue-400"
+                required
               />
             </div>
 
@@ -62,8 +105,8 @@ export default function App() {
             <p className="text-xl">
               Don't you have an account?{" "}
               <Link to="/signup" className=" hover:underline">SignUp</Link>
-                
-         
+
+
             </p>
 
             <div className="flex items-center my-6">

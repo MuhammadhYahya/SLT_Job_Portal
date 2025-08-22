@@ -1,5 +1,6 @@
 import signupImg from "../assets/registrer.png";
 import { useState } from "react";
+import { useNavigate } from "react-router-dom";
 import axios from "axios";
 
 export default function RegisterForm() {
@@ -10,6 +11,7 @@ export default function RegisterForm() {
     confirmPassword: "",
     role: "user" // default role
   });
+const navigate = useNavigate();
 
   const handleSubmit = async (e) => {
     e.preventDefault();
@@ -30,6 +32,7 @@ export default function RegisterForm() {
       });
 console.log("Registration response:", res.data);
       alert("Registered successfully!");
+      navigate("/login");
       console.log(res.data);
     } catch (err) {
       console.error("Registration error:", err.response || err);
